@@ -1,35 +1,36 @@
-var cryptoSquare = function(word) {
-  var result = word.toLowerCase();
-  var array = [];
-  var encryptedArray = [];
-  //result = result.split(/['," "]/);
-  result = result.replace(/["'"," "]/, "");
-  var columns = Math.ceil(Math.sqrt(result.length));
-  columns = columns-1;
-  alert(columns);
-  for(var i = 0;i <=columns;i++) {
-    array[i] = new Array();
-    for(var j = 0; j <= columns;j++) {
-       array[i].push(result[j]);
-       //alert(array[i]);
-    }
-  }
+var cryptoSquare = function(string,group_of_letters) {
+  string = string.toLowerCase();
 
-  var k = 0;
-  var l = 0;
-  alert(array[k][l]);
-  do {
-  for(var i = 0;i<= 2;i++) {
-      encryptedArray[i] = new Array();
-      for(var j=0;j <= array.length - 1 ;j++) {
-        encryptedArray[i].push(array[k][l]);
-        k++;
-      }
-      l++
-    }
-  }while(k<=columns && l<=columns);
+  string = string.replace(/["'"," "]/, "");
+  var columns = Math.floor(Math.sqrt(string.length));
 
 
+  var word = "";
+  var regex1 = new RegExp(".{1,"+columns+"}", "g");
+  var chunks = string.match(regex1);
 
-  return encryptedArray[1][1];
+  var noLetters=0;
+  var j=0;
+
+    do {
+      for(var i=0;i < chunks.length && noLetters<string.length;i++) {
+        //alert(chunks[i][j]);
+            word = word.concat(chunks[i][j]);
+            noLetters++;
+           }
+          j++
+          //alert(j);
+        }while(noLetters<string.length);
+
+  var regex2 = new RegExp(".{1,"+group_of_letters+"}", "g");
+        //alert(word);
+      var wordArray = word.match(regex2);
+      word = wordArray.join();
+      //alert(word);
+      word = word.replace(/[","]/g, " ");
+      //alert(word);
+    return word;
+
+
+
 };

@@ -1,5 +1,5 @@
 describe('cryptoSquare', function() {
-  it("takes a single letter word ", function() {
-    expect(cryptoSquare("he'llo! chitra")).to.eql(["h","e","l"]);
+  it("takes a three letter word ", function() {
+    expect(cryptoSquare("good boy",3)).to.eql("gob yod o");
   });
 });
